@@ -7,7 +7,7 @@ const HomePage = async () =>{
 		<main>
 			<h1>Characters</h1>
 			<ul>
-				{data.results.map((character:{id:number, name:string}) => (
+				{data.results.map((character) => (
 					<li key={character.id}>{character.name}</li>
 				))}
 			</ul>
