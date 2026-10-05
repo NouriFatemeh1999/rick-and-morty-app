@@ -1,7 +1,19 @@
-import type {Character, PaginatedResponse, Location, Episode} from '~/types/api'
+import type { Character, CharacterFilters, Episode, Location, PaginatedResponse } from '~/types/api'
 
-export async function getCharacters(page:number): Promise<PaginatedResponse<Character>> {
-	const response = await fetch(`https://rickandmortyapi.com/api/character?page=${page}`)
+
+export async function getCharacters(page: number, filters?: CharacterFilters): Promise<PaginatedResponse<Character>> {
+	let url = `https://rickandmortyapi.com/api/character?page=${page}`
+	if (filters) {
+		const queryParams = new URLSearchParams(filters as Record<string, string>).toString()
+		url += `&${queryParams}`
+	}
+	const response = await fetch(url)
+	if (response.status === 404) {
+	return { info: { count: 0, pages: 0, next: null, prev: null }, results: [] }
+	}
+	if (!response.ok) {
+		throw new Error(`Failed to fetch characters: ${response.statusText}`)
+	}
 	const data = await response.json()
 	return data
 }

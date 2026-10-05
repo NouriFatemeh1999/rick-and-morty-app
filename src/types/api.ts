@@ -51,3 +51,11 @@ export type PaginatedResponse<T> = {
 	}
 	results: T[]
 }
+
+export type CharacterFilters = {
+	name?: string
+	status?: string
+	species?: string
+	type?: string
+	gender?: string
+}
