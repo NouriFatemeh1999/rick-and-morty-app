@@ -47,3 +47,9 @@ export async function getEpisode(id:string): Promise<Episode> {
 	const data = await response.json()
 	return data
 }
+
+export async function getEpisodesByIds(ids: string[]): Promise<Episode[]>{
+	const response = await fetch(`https://rickandmortyapi.com/api/episode/${ids.join(',')}`)
+	const data = await response.json()
+	return Array.isArray(data) ? data : [data]
+}

@@ -1,4 +1,4 @@
-import { getCharacter } from '~/lib/api'
+import { getCharacter, getEpisodesByIds } from '~/lib/api'
 import Image from 'next/image'
 import styles from '../[id]/page.module.css'
 import Link from 'next/link'
@@ -10,6 +10,8 @@ type CharacterPageProps = {
 const CharacterPage = async ({ params }: CharacterPageProps) => {
 	const { id } = await params
 	const character = await getCharacter(id)
+    const episodeIds = character.episode.map((url) => url.split('/').pop() ?? '')
+    const episodes = await getEpisodesByIds(episodeIds)
     const infoItems = [
         { label: 'Gender', value: character.gender },
         { label: 'Status', value: character.status },
@@ -54,7 +56,25 @@ const CharacterPage = async ({ params }: CharacterPageProps) => {
                     </li>
                 </ul>
             </section>
-        </main>
+
+            <section className={styles.section}>
+                <h2 className={styles.sectionTitle}>Episodes</h2>
+                <ul className={styles.infoList}>
+                    {episodes.map((episode) => (
+                        <li key={episode.id}>
+                            <Link href={`/episodes/${episode.id}`} className={`${styles.infoItem} ${styles.infoLink}`}>
+                                <div>
+                                    <h3 className={styles.label}>{episode.episode}</h3>
+                                    <p className={styles.value}>{episode.name}</p>
+                                    <p className={styles.value}>{episode.air_date}</p>
+                                </div>
+                                <span className={styles.chevron} aria-hidden="true">›</span>
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+            </section>       
+            </main>
         )
 }
 
