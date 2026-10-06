@@ -17,7 +17,7 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
 		<main>
 			<Image src="/RickMorty.svg" alt="Rick and Morty" className={styles.hero} width={312} height={104} priority />
 			<CharacterFilterBox/>
-			<CharacterList initialCharacters={data.results} hasNextPage={data.info.next !== null} />
+			<CharacterList key={JSON.stringify(filters)} initialCharacters={data.results} hasNextPage={data.info.next !== null}  />
 		</main>
 	)
 }

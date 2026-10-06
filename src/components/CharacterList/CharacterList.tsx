@@ -30,7 +30,7 @@ const CharacterList = ({ initialCharacters, hasNextPage }: CharacterListProps) =
     return (
         <>
             <ul className={styles.list}>
-                {initialCharacters.map((character) => (
+                {characters.map((character) => (
                     <li key={character.id}>
                         <CharacterCard character={character} />
                     </li>
