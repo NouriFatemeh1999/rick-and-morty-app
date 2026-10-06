@@ -1,4 +1,4 @@
-import { getCharacter, getCharactersByIds, getLocation } from "~/lib/api"
+import { getCharactersByIds, getLocation } from "~/lib/api"
 import CharacterCard from "~/components/CharacterCard/CharacterCard"
 import styles from './page.module.css'
 

@@ -28,4 +28,8 @@
 
 .list{
     margin-top: 10px;
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
 }
