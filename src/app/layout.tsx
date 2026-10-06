@@ -2,6 +2,9 @@ import type { Metadata, Viewport } from 'next'
 import type { ReactNode } from 'react'
 import '../styles/globals.css'
 import Header from '../components/Header/Header'
+import {Roboto} from 'next/font/google'
+
+const roboto = Roboto({ subsets: ['latin'], weight: ['400', '500', '700'] })
 
 export const metadata: Metadata = {
 	title: 'Rick and Morty',
@@ -19,7 +22,7 @@ type RootLayoutProps = {
 
 const RootLayout = ({ children }: RootLayoutProps) => (
 	<html lang="en">
-		<body>
+		<body className={roboto.className}>
 			<Header />
 			<main>{children}</main>
 		</body>

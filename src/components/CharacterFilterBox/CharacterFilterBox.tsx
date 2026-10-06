@@ -16,8 +16,6 @@ const CharacterFilterBox = () => {
     const handleSubmit =(e: FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
         applyFilters()
-        const trimmedName = name.trim()
-        router.push(trimmedName ? `/?name=${encodeURIComponent(trimmedName)}`:`/`)
     }
 
     const applyFilters = () => {
@@ -45,10 +43,10 @@ const CharacterFilterBox = () => {
         </button>
         {isOpen && (
             <div className={styles.overlay}>
-                <div className={styles.modal} role='dialog' aria-moda= "true">
+                <div className={styles.modal} role='dialog' aria-modal= "true">
                    <div className={styles.modalHeader}>
                         <h2>Filters</h2>
-                        <button onClick={()=>setIsOpen(false)} aria-label='Close filters' className={styles.closeButton}>✕</button>
+                        <button onClick={()=>setIsOpen(false)} aria-label="Close filters" className={styles.closeButton}>✕</button>
                     </div>
 
                     <select value={species} onChange={(e)=> setSpecies(e.target.value)} aria-label="Species" className={styles.topDown}>
