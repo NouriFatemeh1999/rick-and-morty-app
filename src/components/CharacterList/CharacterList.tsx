@@ -1,32 +1,24 @@
 'use client'
 import CharacterCard from '~/components/CharacterCard/CharacterCard'
-import type { Character } from '~/types/api'
+import type { Character, CharacterFilters } from '~/types/api'
 import styles from './CharacterList.module.css'
-import {useState} from 'react'
 import {getCharacters} from '~/lib/api'
+import useLoadMore from '~/hooks/useLoadMore'
 
 type CharacterListProps = {
 	initialCharacters: Character[]
     hasNextPage: boolean
+    filters: CharacterFilters
 }
 
-const CharacterList = ({ initialCharacters, hasNextPage }: CharacterListProps) => {
-    const [characters, setCharacters] = useState(initialCharacters)
-    const [page, setPage] = useState(1)
-    const [hasMore, setHasMore] = useState(hasNextPage)
-	const [isLoading, setIsLoading] = useState(false)
+const CharacterList = ({ initialCharacters, hasNextPage, filters }: CharacterListProps) => {
 
-    const loadMore = async () => {
-		setIsLoading(true)
+    const {items: characters, hasMore, isLoading, loadMore} = useLoadMore({
+        initialItems: initialCharacters,
+        initialHasMore: hasNextPage,
+        fetchPage: (page) => getCharacters(page, filters),
+    })
 
-		const nextPage = page + 1
-		const data = await getCharacters(nextPage)
-
-		setCharacters((prev) => [...prev, ...data.results])
-		setPage(nextPage)
-		setHasMore(data.info.next !== null)
-		setIsLoading(false)
-	}
     return (
         <>
             <ul className={styles.list}>
