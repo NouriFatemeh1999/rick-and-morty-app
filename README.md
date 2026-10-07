@@ -49,7 +49,6 @@ Then open http://localhost:3000 (best viewed in mobile mode, e.g. 360px wide).
 </p>
 
 ## Project structure
-## Project structure
 
 - `src/`
   - `app/` – Pages (App Router): each folder is a route
