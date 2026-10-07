@@ -1,4 +1,4 @@
-import type { Character, CharacterFilters, Episode, Location, PaginatedResponse } from '~/types/api'
+import type { Character, CharacterFilters, LocationFilters, EpisodeFilters, Episode, Location, PaginatedResponse } from '~/types/api'
 
 
 export async function getCharacters(page: number, filters?: CharacterFilters): Promise<PaginatedResponse<Character>> {
@@ -24,11 +24,23 @@ export async function getCharacter(id:string):Promise<Character> {
 	return data
 }
 
-export async function getLocations(page:number): Promise<PaginatedResponse<Location>> {
-	const response = await fetch(`https://rickandmortyapi.com/api/location?page=${page}`)
+export async function getLocations(page:number, filters?:LocationFilters): Promise<PaginatedResponse<Location>> {
+	let url = `https://rickandmortyapi.com/api/location?page=${page}`
+	if (filters){
+		const queryParams = new URLSearchParams(filters as Record<string, string>).toString()
+		url += `&${queryParams}`
+	}
+	const response = await fetch(url)
+	if (response.status === 404) {
+	return { info: { count: 0, pages: 0, next: null, prev: null }, results: [] }
+	}
+	if (!response.ok) {
+		throw new Error(`Failed to fetch Locations: ${response.statusText}`)
+	}
 	const data = await response.json()
 	return data
 }
+
 
 export async function getLocation(id:string): Promise<Location> {
 	const response = await fetch(`https://rickandmortyapi.com/api/location/${id}`)
@@ -36,8 +48,19 @@ export async function getLocation(id:string): Promise<Location> {
 	return data
 }
 
-export async function getEpisodes(page:number): Promise<PaginatedResponse<Episode>> {
-	const response = await fetch(`https://rickandmortyapi.com/api/episode?page=${page}`)
+export async function getEpisodes(page:number, filters?:EpisodeFilters): Promise<PaginatedResponse<Episode>> {
+	let url = `https://rickandmortyapi.com/api/episode?page=${page}`
+	if (filters){
+		const queryParams = new URLSearchParams(filters as Record<string, string>).toString()
+		url += `&${queryParams}`
+	}
+	const response = await fetch(url)
+	if (response.status === 404) {
+	return { info: { count: 0, pages: 0, next: null, prev: null }, results: [] }
+	}
+	if (!response.ok) {
+		throw new Error(`Failed to fetch Episode: ${response.statusText}`)
+	}
 	const data = await response.json()
 	return data
 }

@@ -59,3 +59,14 @@ export type CharacterFilters = {
 	type?: string
 	gender?: string
 }
+
+export type LocationFilters = {
+	name?: string
+	type?: string
+	dimension?: string
+}
+
+export type EpisodeFilters = {
+	name?: string
+	episode?: string
+}

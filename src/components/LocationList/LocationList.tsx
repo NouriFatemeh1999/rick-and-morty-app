@@ -3,18 +3,19 @@ import useLoadMore from "~/hooks/useLoadMore"
 import { getLocations } from "~/lib/api"
 import InfoCard from "../InfoCard/InfoCard"
 import styles from "./LocationList.module.css"
-import type { Location } from "~/types/api"
+import type { Location, LocationFilters } from "~/types/api"
 
 type LocationListProps ={
     initialLocations: Location[]
     hasNextPage: boolean
+    filters: LocationFilters
 }
 
-const LocationList = ({initialLocations, hasNextPage}: LocationListProps) =>{
+const LocationList = ({initialLocations, hasNextPage, filters}: LocationListProps) =>{
         const {items: locations, hasMore, isLoading, loadMore} = useLoadMore({
         initialItems: initialLocations,
         initialHasMore: hasNextPage,
-        fetchPage:  getLocations,
+        fetchPage: (page)=>  getLocations(page,filters),
     })
 
     return(

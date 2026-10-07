@@ -1,4 +1,8 @@
-.main {
+.main{
+    padding: 0 24px 48px;
+}
+
+.list {
 	padding: 0 24px 48px;
 }
 

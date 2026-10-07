@@ -5,7 +5,7 @@ import styles from './Header.module.css'
 import { useState } from 'react'
 
 const NavLinks = [
-    { href: '/characters', label: 'Characters' },
+    { href: '/', label: 'Characters' },
     { href: '/locations', label: 'Locations' },
     { href: '/episodes', label: 'Episodes' },
 ]
