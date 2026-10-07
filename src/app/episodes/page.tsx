@@ -1,4 +1,3 @@
-import InfoCard from '~/components/InfoCard/InfoCard'
 import { getEpisodes } from '~/lib/api'
 import styles from './page.module.css'
 import Image from 'next/image'
