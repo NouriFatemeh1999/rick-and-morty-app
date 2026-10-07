@@ -2,6 +2,7 @@ import { getCharacter, getEpisodesByIds } from '~/lib/api'
 import Image from 'next/image'
 import styles from '../[id]/page.module.css'
 import Link from 'next/link'
+import BackButton from '~/components/BackButton/BackButton'
 
 type CharacterPageProps = {
 	params: Promise<{ id: string }>
@@ -22,6 +23,7 @@ const CharacterPage = async ({ params }: CharacterPageProps) => {
 
     return (
         <main className={styles.main}>
+            <BackButton/>
             <Image
                 src={character.image}
                 alt={character.name}

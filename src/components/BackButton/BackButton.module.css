@@ -1,0 +1,13 @@
+.backBut {
+	display: flex;
+	gap: 8px;
+	margin: 16px 0;
+	padding: 0;
+	background: none;
+	border: none;
+	font-size: 18px;
+	font-weight: 700;
+	text-transform: uppercase;
+	color: #000;
+	cursor: pointer;
+}

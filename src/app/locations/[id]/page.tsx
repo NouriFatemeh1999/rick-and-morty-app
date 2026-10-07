@@ -1,6 +1,8 @@
 import { getCharactersByIds, getLocation } from "~/lib/api"
 import CharacterCard from "~/components/CharacterCard/CharacterCard"
 import styles from './page.module.css'
+import BackButton from '~/components/BackButton/BackButton'
+
 
 type LocationDetailPageProps ={
     params: Promise<{id:string}>
@@ -14,6 +16,7 @@ const LocationDetailPage = async ({params}: LocationDetailPageProps) =>{
 
     return(
         <main className={styles.main}>
+            <BackButton/>
             <section>
                 <h1 className={styles.name}>{location.name}</h1>
 
