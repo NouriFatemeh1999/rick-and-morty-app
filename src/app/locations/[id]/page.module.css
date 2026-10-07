@@ -26,8 +26,8 @@
 	color: #6e798c;
 }
 
-.list{
-    margin-top: 10px;
+.list {
+	margin-top: 10px;
 	list-style: none;
 	display: flex;
 	flex-direction: column;

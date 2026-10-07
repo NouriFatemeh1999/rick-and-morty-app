@@ -5,8 +5,8 @@
 	"scripts": {
 		"build": "next build",
 		"dev": "next dev",
-		"format": "echo \"You should setup a formatter first. =)\"",
-		"lint": "echo \"You should setup a linter first. =)\"",
+		"format": "prettier --write .",
+		"format:check": "prettier --check .",
 		"start": "next start",
 		"test": "echo \"You should setup a test runner first. =)\"",
 		"typecheck": "tsc"
@@ -23,6 +23,7 @@
 		"@types/node": "24.0.10",
 		"@types/react": "19.1.8",
 		"@types/react-dom": "19.1.6",
+		"prettier": "^3.9.9",
 		"typescript": "5.8.3"
 	},
 	"packageManager": "yarn@4.9.2"

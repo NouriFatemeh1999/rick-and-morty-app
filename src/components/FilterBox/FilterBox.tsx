@@ -55,7 +55,13 @@ const FilterBox = ({ basePath, searchPlaceholder, selects = [] }: FilterBoxProps
 
 			{selects.length > 0 && (
 				<button onClick={() => setIsOpen(true)} className={styles.filterButton}>
-					<svg className={styles.filterIcon} viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+					<svg
+						className={styles.filterIcon}
+						viewBox="0 0 24 24"
+						width="24"
+						height="24"
+						aria-hidden="true"
+					>
 						<path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" fill="currentColor" />
 					</svg>
 					Advanced filters
@@ -67,7 +73,11 @@ const FilterBox = ({ basePath, searchPlaceholder, selects = [] }: FilterBoxProps
 					<div className={styles.modal} role="dialog" aria-modal="true">
 						<div className={styles.modalHeader}>
 							<h2>Filters</h2>
-							<button onClick={() => setIsOpen(false)} aria-label="Close filters" className={styles.closeButton}>
+							<button
+								onClick={() => setIsOpen(false)}
+								aria-label="Close filters"
+								className={styles.closeButton}
+							>
 								✕
 							</button>
 						</div>
