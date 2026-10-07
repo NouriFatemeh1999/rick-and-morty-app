@@ -1,3 +1,5 @@
+// All requests to the Rick and Morty REST API live in this file
+
 import type {
 	Character,
 	CharacterFilters,
@@ -18,6 +20,7 @@ export async function getCharacters(
 		url += `&${queryParams}`
 	}
 	const response = await fetch(url)
+	// The API answers 404 when nothing matches the filters: return an empty list instead of an error
 	if (response.status === 404) {
 		return { info: { count: 0, pages: 0, next: null, prev: null }, results: [] }
 	}
@@ -44,6 +47,7 @@ export async function getLocations(
 		url += `&${queryParams}`
 	}
 	const response = await fetch(url)
+	// The API answers 404 when nothing matches the filters: return an empty list instead of an error
 	if (response.status === 404) {
 		return { info: { count: 0, pages: 0, next: null, prev: null }, results: [] }
 	}
@@ -70,6 +74,7 @@ export async function getEpisodes(
 		url += `&${queryParams}`
 	}
 	const response = await fetch(url)
+	// The API answers 404 when nothing matches the filters: return an empty list instead of an error
 	if (response.status === 404) {
 		return { info: { count: 0, pages: 0, next: null, prev: null }, results: [] }
 	}
@@ -89,6 +94,7 @@ export async function getEpisode(id: string): Promise<Episode> {
 export async function getEpisodesByIds(ids: string[]): Promise<Episode[]> {
 	const response = await fetch(`https://rickandmortyapi.com/api/episode/${ids.join(',')}`)
 	const data = await response.json()
+	// With only one id, the API returns a single object instead of an array
 	return Array.isArray(data) ? data : [data]
 }
 
@@ -96,5 +102,6 @@ export async function getCharactersByIds(ids: string[]): Promise<Character[]> {
 	if (ids.length === 0) return []
 	const response = await fetch(`https://rickandmortyapi.com/api/character/${ids.join(',')}`)
 	const data = await response.json()
+	// With only one id, the API returns a single object instead of an array
 	return Array.isArray(data) ? data : [data]
 }

@@ -26,5 +26,8 @@ const useLoadMore = <T>({ initialItems, initialHasMore, fetchPage }: UseLoadMore
 
 	return { items, hasMore, isLoading, loadMore }
 }
-
+/**
+ * Shared "Load more" pagination logic, reused by the character, location and episode lists.
+ * The list passes `fetchPage`, so this hook doesn't depend on any specific API.
+ */
 export default useLoadMore

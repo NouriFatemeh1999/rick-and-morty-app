@@ -1,3 +1,5 @@
+// All requests to the Rick and Morty REST API live in this file
+
 export type CharacterStatus = 'Alive' | 'Dead' | 'unknown'
 
 export type CharacterGender = 'Female' | 'Male' | 'Genderless' | 'unknown'
@@ -17,7 +19,7 @@ export type Character = {
 	origin: ResourceLink
 	location: ResourceLink
 	image: string
-	episode: string[]
+	episode: string[]  // URLs of the episodes; the id is the last part of each URL
 	url: string
 	created: string
 }
@@ -42,6 +44,7 @@ export type Episode = {
 	created: string
 }
 
+// Shape shared by every list endpoint (characters, locations, episodes)
 export type PaginatedResponse<T> = {
 	info: {
 		count: number

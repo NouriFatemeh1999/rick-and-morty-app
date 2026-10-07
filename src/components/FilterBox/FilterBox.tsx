@@ -24,7 +24,7 @@ const FilterBox = ({ basePath, searchPlaceholder, selects = [] }: FilterBoxProps
 		Object.fromEntries(selects.map((select) => [select.name, searchParams.get(select.name) ?? ''])),
 	)
 	const [isOpen, setIsOpen] = useState(false)
-
+// Filters live in the URL, so a refresh or a shared link keeps them
 	const applyFilters = () => {
 		const params = new URLSearchParams()
 		if (name.trim()) params.set('name', name.trim())
